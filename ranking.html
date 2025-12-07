@@ -1,0 +1,126 @@
+<!-- ranking.html (chỉ thay thứ tự script, nội dung khác giữ nguyên) -->
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ranking - Anh Trai Say Hi</title>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- Header cố định -->
+  <header class="site-header">
+    <div class="container header-inner">
+
+
+    <!-- Thêm logo nhỏ cố định góc trái trên header -->
+    <a href="index.html" class="logo-small">
+      <img src="assets/images/logo-small.webp" alt="Logo nhỏ">
+    </a>
+
+    <nav class="main-nav" id="mainNav">
+      <a href="index.html" class="nav-link active">Trang chủ</a>
+      <a href="ranking.html" class="nav-link">Xếp hạng</a>
+      <a href="watch.html" class="nav-link">Xem tập</a>
+      <a href="messages.html" class="nav-link">Lời nhắn gửi</a>
+    </nav>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Mở menu">☰</button>
+
+  </div>
+</header>
+
+<main class="container main-content">
+
+  <!-- TIÊU ĐỀ + SELECT -->
+  <div class="blur-box" style="padding:18px; margin-bottom:22px;">
+    <h2 style="margin-top:0;">Xếp hạng</h2>
+    <div class="ranking-controls">
+      <label for="categorySelect">Chọn hạng mục:</label>
+      <select id="categorySelect">
+        <option value="favorite">Anh trai được yêu thích nhất</option>
+        <option value="leader">Best Leader</option>
+        <option value="performer">Best Performer</option>
+        <option value="visual">Best Visual</option>
+        <option value="vocal">Best Vocal</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- TOP 3 PODIUM -->
+  <section class="ranking-top3 blur-box" id="top3" style="padding:20px; margin-bottom:25px;"></section>
+
+  <!-- BẢNG XẾP HẠNG -->
+  <section class="ranking-table blur-box" id="rankingTable" style="padding:20px;"></section>
+
+  <!--
+    LƯU Ý: Nếu bạn muốn grid 30 anh trai hiển thị, cần thêm
+    một phần tử có id="brothersGrid" ở đây, ví dụ:
+    <div id="brothersGrid" class="brothers-grid"></div>
+  -->
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="contact">
+      <p><strong>Thông tin liên hệ:</strong></p>
+      <p>Số điện thoại: 0345086964</p>
+      <p>Email: maidoraemon12345@gmail.com</p>
+      <p>Facebook: <a href="https://www.facebook.com/xmaii.pham/" target="_blank" rel="noopener noreferrer">https://www.facebook.com/xmaii.pham/</a></p>
+    </div>
+    <div class="copyright">
+      © <span id="year"></span> Anh Trai Say Hi - Mùa 2
+    </div>
+  </div>
+</footer>
+
+
+
+<script src="assets/js/main.js"></script>
+
+<!-- Inline script sử dụng hàm từ main.js -->
+<script>
+document.addEventListener('DOMContentLoaded', ()=>{
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Init ranking
+  window.initRanking();
+
+  // Render grid 30 anh trai
+  window.renderBrothersGrid('brothersGrid');
+
+  // Nav active
+  const page = location.pathname.split('/').pop() || 'index.html';
+  document.querySelectorAll('.main-nav .nav-link').forEach(link => {
+    link.classList.toggle('active', link.getAttribute('href') === page);
+  });
+
+  // Mobile nav toggle
+  document.getElementById('navToggle').onclick = () =>
+    document.getElementById('mainNav').classList.toggle('open');
+});
+</script>
+<!-- Thêm 3 dòng này TRƯỚC khi load main.js -->
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+
+<!-- rồi mới tới file chính của bạn -->
+<script src="assets/js/main.js"></script>
+
+
+  <!-- small inline helper (giữ giống trước) -->
+  <script>
+    document.addEventListener('DOMContentLoaded', ()=>{
+      document.getElementById('year').textContent = new Date().getFullYear();
+      // mobile nav toggle
+      document.getElementById('navToggle').onclick = () =>
+        document.getElementById('mainNav').classList.toggle('open');
+    });
+  </script>
+
+
+</body>
+</html>

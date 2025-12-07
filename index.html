@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Anh Trai 'Say Hi' - Mùa 2</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+
+  <!-- Header cố định -->
+  <header class="site-header">
+    <div class="container header-inner">
+
+
+    <!-- Thêm logo nhỏ cố định góc trái trên header -->
+    <a href="index.html" class="logo-small">
+      <img src="assets/images/logo-small.webp" alt="Logo nhỏ">
+    </a>
+
+    <nav class="main-nav" id="mainNav">
+      <a href="index.html" class="nav-link active">Trang chủ</a>
+      <a href="ranking.html" class="nav-link">Xếp hạng</a>
+      <a href="watch.html" class="nav-link">Xem tập</a>
+      <a href="messages.html" class="nav-link">Lời nhắn gửi</a>
+    </nav>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Mở menu">☰</button>
+
+  </div>
+</header>
+
+
+  <main class="container main-content">
+
+    <!-- Hero -->
+    <section class="hero">
+      <h1>Anh Trai “Say Hi” — Mùa 2</h1>
+      <p class="lead">
+        Chương trình giải trí trẻ, nơi các anh trai gặp gỡ, biểu diễn và nhận lời nhắn từ fan.
+      </p>
+
+      <div class="cta">
+        <a class="btn" href="watch.html">Xem tập</a>
+        <a class="btn outline" href="ranking.html">Bình chọn</a>
+      </div>
+    </section>
+
+    <!-- Tiêu đề -->
+    <section class="blur-title">
+      <h2 class="section-title">DANH SÁCH 30 ANH TRAI</h2>
+    </section>
+
+    <!-- GRID 30 ANH TRAI -->
+    <section class="blur-box">
+      <div class="brothers-grid" id="brothersGrid"></div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="contact">
+      <p><strong>Thông tin liên hệ:</strong></p>
+      <p>Số điện thoại: 0345086964</p>
+      <p>Email: maidoraemon12345@gmail.com</p>
+      <p>Facebook: <a href="https://www.facebook.com/xmaii.pham/" target="_blank" rel="noopener noreferrer">https://www.facebook.com/xmaii.pham/</a></p>
+    </div>
+    <div class="copyright">
+      © <span id="year"></span> Anh Trai Say Hi - Mùa 2
+    </div>
+  </div>
+</footer>
+
+
+
+  <!-- Modal -->
+  <div id="detailModal" class="modal hidden" role="dialog">
+    <div class="modal-content">
+      <button class="close-modal" id="closeModal" aria-label="Đóng">×</button>
+      <div id="modalBody"></div>
+    </div>
+  </div>
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+
+  <script src="assets/js/main.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      // Render 30 anh trai
+      window.renderBrothersGrid('brothersGrid');
+
+      // Nav active
+      const page = location.pathname.split('/').pop() || 'index.html';
+      document.querySelectorAll('.main-nav .nav-link').forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === page);
+      });
+
+      // Mobile nav
+      document.getElementById('navToggle').onclick = () =>
+        document.getElementById('mainNav').classList.toggle('open');
+
+      // Close modal
+      document.getElementById('closeModal').onclick = () =>
+        document.getElementById('detailModal').classList.add('hidden');
+    });
+  </script>
+
+</body>
+</html>
